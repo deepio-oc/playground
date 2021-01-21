@@ -1,6 +1,5 @@
 import kfp
 
-
 def pipelines_laucher(pipelines_str, experiment_name):
     import kfp, os, datetime, json
 
@@ -27,10 +26,5 @@ launcher_op = kfp.components.create_component_from_func(pipelines_laucher, base_
 def launcher_pipeline(pipelines, experiment_name='Default'):
     launcher_op (pipelines, experiment_name)
 
-import os
-import ssl
-ssl.CERT_REQUIRED = ssl.CERT_NONE
-client = kfp.Client(host="https://18.233.111.255:32222/pipeline",existing_token=os.environ.get("DKUBE_TOKEN"),client_id="1")
-arguments = {"pipelines":'[ "Robot pipeline-1005","Robot pipeline-0702"]',"experiment_name":'Default'}
-client.create_run_from_pipeline_func(launcher_pipeline, arguments=arguments)
-#kfp.compiler.Compiler().compile(launcher_pipeline, "launcher_pipeline.zip")
+
+kfp.compiler.Compiler().compile(launcher_pipeline, "launcher_pipeline.zip")
