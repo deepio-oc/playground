@@ -27,4 +27,4 @@ def launcher_pipeline(pipelines, experiment_name='Default'):
     launcher_op (pipelines, experiment_name)
 
 
-kfp.compiler.Compiler().compile(launcher_pipeline, "launcher_pipeline.zip")
+kfp.compiler.Compiler().compile(launcher_pipeline, "pipelines_launcher.zip")
